@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\Microsoft.Net.Compilers.3.8.0-3.final\build\Microsoft.Net.Compilers.props" Condition="Exists('packages\Microsoft.Net.Compilers.3.8.0-3.final\build\Microsoft.Net.Compilers.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -9,7 +10,9 @@
     <OutputType>Library</OutputType>
     <RootNamespace>DestructionEffects</RootNamespace>
     <AssemblyName>DestructionEffects</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
     <ConsolePause>false</ConsolePause>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>none</DebugType>
@@ -30,19 +34,142 @@
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
     <ConsolePause>false</ConsolePause>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Optimize>true</Optimize>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\..\Games\KSP\KSP 0.90 - Mod Dev\KSP_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <HintPath>..\_LocalDev\KSPRefs\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
     </Reference>
+    <Reference Include="KSPAssets">
+      <HintPath>..\_LocalDev\KSPRefs\KSPAssets.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System" />
+    <Reference Include="System.Linq" />
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Runtime.InteropServices" />
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation" />
+    <Reference Include="System.Threading.Thread" />
     <Reference Include="UnityEngine">
-      <HintPath>..\..\..\Games\KSP\KSP 0.90 - Mod Dev\KSP_Data\Managed\UnityEngine.dll</HintPath>
+      <HintPath>..\_LocalDev\KSPRefs\UnityEngine.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\_LocalDev\KSPRefs\UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>..\_LocalDev\KSPRefs\UnityEngine.ParticleSystemModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\_LocalDev\KSPRefs\UnityEngine.PhysicsModule.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FlamingJoints.cs" />
-    <Compile Include="DEGaplessParticleEmitter.cs" />
-    <Compile Include="FlamingJointScript.cs" />
+    <Compile Include="DestructionEffects\BDAcheck.cs" />
+    <Compile Include="DestructionEffects\DEGaplessParticleEmitter.cs" />
+    <Compile Include="DestructionEffects\DESettings.cs" />
+    <Compile Include="DestructionEffects\FlamingJoints.cs" />
+    <Compile Include="DestructionEffects\FlamingJointScript.cs" />
+    <Compile Include="DestructionEffects\Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Distribution\GameData\DestructionEffects\ChangeLog.txt" />
+    <Content Include="Distribution\GameData\DestructionEffects\License.txt" />
+    <Content Include="Distribution\GameData\DestructionEffects\Models\FlameEffect2\flameA.png" />
+    <Content Include="Distribution\GameData\DestructionEffects\Models\FlameEffect2\flameD.png" />
+    <Content Include="Distribution\GameData\DestructionEffects\Models\FlameEffect2\muzzleSmoke.png" />
+    <Content Include="Distribution\GameData\DestructionEffects\Models\FlameEffect2\Torchanimation_135.png" />
+    <Content Include="Distribution\GameData\DestructionEffects\Models\FlameEffect_Legacy\ExpTex2.png" />
+    <Content Include="Distribution\GameData\DestructionEffects\Models\FlameEffect_Legacy\smoke.png" />
+    <Content Include="Distribution\GameData\DestructionEffects\Plugins\DestructionEffects.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Distribution\GameData\DestructionEffects\DestructionEffects.version" />
+    <None Include="Distribution\GameData\DestructionEffects\Models\FlameEffect2\model.mu" />
+    <None Include="Distribution\GameData\DestructionEffects\Models\FlameEffect_Legacy\model.mu" />
+    <None Include="Distribution\GameData\DestructionEffects\settings.cfg" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <PropertyGroup>
+    <PostBuildEvent>@echo $(Targetname)
+SET ModName=DestructionEffects
+@echo ...
+@echo set lpath vars from LocalDev storage...
+set /p KSP_DIR=&lt;"$(ProjectDir)LocalDev\ksp_dir.txt"
+set /p PDB2MDB_EXE=&lt;"$(ProjectDir)LocalDev\pdb2mdb_exe.txt"
+set /p ZA_DIR=&lt;"$(ProjectDir)LocalDev\7za_dir.txt"
+set /p DIST_DIR=&lt;"$(ProjectDir)LocalDev\dist_dir.txt"
+
+@echo distributing $(Targetname) files...
+copy /Y "$(TargetPath)" "$(ProjectDir)Distribution\GameData\%25ModName%25\Plugins\"
+copy /Y "$(TargetPath)" "C:\Users\dlane\Dropbox\Kerbal\ModDevelopment\Release"
+copy /Y "$(TargetPath)" "$(ProjectDir)Distribution\GameData\DestructionEffects\Plugins\"
+
+if $(ConfigurationName) == Debug (
+@echo building $(Targetname).dll.mdb file...
+cd "$(TargetDir)"
+copy /Y "$(TargetDir)$(Targetname).pdb" "%25KSP_DIR%25\GameData\%25ModName%25\Plugins\"
+)
+
+@echo deleting previous build ...
+if exist "%25DIST_DIR%25\%25ModName%25*.zip" del "%25DIST_DIR%25\%25ModName%25*.zip"
+@echo packaging new build...
+call "%25ZA_DIR%25\7za.exe" a -tzip -r  "%25DIST_DIR%25\%25ModName%25.@(VersionNumber)_%25DATE:~4,2%25%25DATE:~7,2%25%25DATE:~10,4%25.zip" "$(ProjectDir)Distribution\*.*"
+copy /Y "$(TargetDir)$(Targetname).dll.mdb" "%25KSP_DIR%25\GameData\DestructionEffects\Plugins\"
+)
+
+@echo packaging files...
+if exist "%25DIST_DIR%25\DestructionEffects*.zip" del "%25DIST_DIR%25\DestructionEffects*.zip"
+call "%25ZA_DIR%25\7za.exe" a -tzip -r  "%25DIST_DIR%25\DestructionEffects.@(VersionNumber)_%25DATE:~4,2%25%25DATE:~7,2%25%25DATE:~10,4%25.zip" "$(ProjectDir)Distribution\*.*"
+
+@echo Deploy $(Targetname) Distribution files to test env:  %25KSP_DIR%25\GameData...
+@echo copying:"$(SolutionDir)Distribution\GameData" to "%25KSP_DIR%25\GameData" 
+xcopy /E /Y "$(SolutionDir)Distribution\GameData" "%25KSP_DIR%25\GameData"
+
+if $(ConfigurationName) == Debug (
+copy /Y "$(TargetDir)$(Targetname).pdb" "%25KSP_DIR%25\GameData\%25ModName%25\Plugins\"
+copy /Y "$(TargetDir)$(Targetname).pdb" "%25KSP_DIR%25\GameData\DestructionEffects\Plugins\"
+)
+
+@echo Build/deploy complete!</PostBuildEvent>
+  </PropertyGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Microsoft.Net.Compilers.3.8.0-3.final\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.Net.Compilers.3.8.0-3.final\build\Microsoft.Net.Compilers.props'))" />
+  </Target>
 </Project>
